@@ -1,4 +1,6 @@
 import re
+import sys
+
 class dispatcher:
     def __init__(self):
         self.builtins = {}
@@ -11,13 +13,13 @@ class dispatcher:
 
     def register_cmd(self,match,handler,role=None,channel=None):
         m = re.compile(match)
-        self.builtins[m] = (handler,role,channel)
+        self.cmds[m] = (handler,role,channel)
 
     def register_default(self,handler):
         self.default = handler
 
     def check_cmd_permission(self,message,handler):
-        print(message)
+        sys.stderr.write(str(message)+'\n')
         return True
 
     async def dispatch_cmd(self,message):
