@@ -23,7 +23,7 @@ class dispatcher:
         if roles:
             pass
         if channels:
-            if message.channel.type != 'text':
+            if message.channel.type != discord.ChannelType.text:
                 return False
             for channel in channels:
                 if re.search(channel,message.channel.name):
