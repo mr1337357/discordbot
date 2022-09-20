@@ -1,5 +1,6 @@
 import re
 import sys
+import discord
 
 class dispatcher:
     def __init__(self):
