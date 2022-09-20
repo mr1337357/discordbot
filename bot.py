@@ -3,6 +3,11 @@ from dispatcher import dispatcher
 import random
 import sys
 
+def add_react(message,name):
+    reaction = discord.utils.get(message.guild.emojis,name)
+    if reaction:
+        message.add_reaction(reaction)
+
 d = dispatcher()
 d.register_builtin('!ping', lambda msg: msg.channel.send('pong'))
 d.register_builtin('!source', lambda msg: msg.channel.send('https://github.com/mr1337357/discordbot'))
@@ -11,7 +16,7 @@ d.register_builtin('!reload',lambda msg: sys.exit(0))
 
 d.register_cmd('!roll', lambda msg: msg.channel.send(random.randint(1,20)))
 d.register_cmd('!socks', lambda msg: msg.channel.send(random.choice(['UwU','OwO','onii-chan'])),channels = ['programming-socks-gone-wild'])
-d.register_cmd('.*socks.*',lambda msg: msg.add_reaction(':bonk:'),channels = ['^programming-socks-gone-wild'])
+d.register_cmd('.*socks.*',lambda msg: add_react(msg,':bonk:'),channels = ['^programming-socks-gone-wild'])
 
 class MyClient(discord.Client):
     async def on_ready(self):
