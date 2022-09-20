@@ -4,7 +4,6 @@ import random
 import sys
 
 async def add_react(message,name):
-    print(message.guild.emojis)
     reaction = discord.utils.get(message.guild.emojis,name=name)
     if reaction:
         await message.add_reaction(reaction)
@@ -18,7 +17,6 @@ d.register_builtin('!reload',lambda msg: sys.exit(0))
 d.register_cmd('!roll', lambda msg: msg.channel.send(random.randint(1,20)))
 d.register_cmd('!socks', lambda msg: msg.channel.send(random.choice(['UwU','OwO','onii-chan'])),channels = ['programming-socks-gone-wild'])
 d.register_cmd('.*socks.*',lambda msg: add_react(msg,'bonk'),channels = ['^((?!programming-socks-gone-wild).)*$'])
-d.register_cmd('.*reackshun.*',lambda msg: add_react(msg,':thumbsup:'))
 
 class MyClient(discord.Client):
     async def on_ready(self):
