@@ -3,7 +3,8 @@ from dispatcher import dispatcher
 import random
 
 d = dispatcher()
-
+d.register_builtin('!ping', lambda msg: msg.channel.send('pong'))
+d.register_builtin('!source', lambda msg: msg.channel.send('https://github.com/mr1337357/discordbot'))
 d.register_cmd('!roll', lambda msg: msg.channel.send(random.randint(1,20)))
 
 class MyClient(discord.Client):
@@ -11,7 +12,6 @@ class MyClient(discord.Client):
         print(f'logged on as {self.user}!')
 
     async def on_message(self,message):
-        print(f'Message from {message.author}: {message.content}')
         await d.dispatch_cmd(message)
 
 intents = discord.Intents.default()
