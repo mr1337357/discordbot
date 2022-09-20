@@ -29,7 +29,7 @@ class dispatcher:
                 return
         for cmd,handler in self.cmds.items():
             if cmd.match(message.content):
-                if check_cmd_permission(message,handler):
+                if self.check_cmd_permission(message,handler):
                     await handler[0](message)
                     return
         self.default(message)
