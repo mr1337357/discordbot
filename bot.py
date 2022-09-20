@@ -3,10 +3,10 @@ from dispatcher import dispatcher
 import random
 import sys
 
-def add_react(message,name):
+async def add_react(message,name):
     reaction = discord.utils.get(message.guild.emojis,name=name)
     if reaction:
-        message.add_reaction(reaction)
+        await message.add_reaction(reaction)
 
 d = dispatcher()
 d.register_builtin('!ping', lambda msg: msg.channel.send('pong'))
