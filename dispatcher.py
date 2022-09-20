@@ -23,8 +23,12 @@ class dispatcher:
         if roles:
             pass
         if channels:
-            if not message.channel.name in channels:
+            if message.channel.type != 'text':
                 return False
+            for channel in channels:
+                if re.search(channel,message.channel.name):
+                    return True
+            return False
         return True
 
     async def dispatch_cmd(self,message):
