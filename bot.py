@@ -10,7 +10,7 @@ d.register_builtin('!log',lambda msg: print(msg))
 d.register_builtin('!reload',lambda msg: sys.exit(0))
 
 d.register_cmd('!roll', lambda msg: msg.channel.send(random.randint(1,20)))
-d.register_cmd('!socks', lambda msg: msg.channel.send(random.choice(['UwU','OwO','onii-chan'])))
+d.register_cmd('!socks', lambda msg: msg.channel.send(random.choice(['UwU','OwO','onii-chan'])),channels = ['programming-socks-gone-wild'])
 
 class MyClient(discord.Client):
     async def on_ready(self):

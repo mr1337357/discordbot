@@ -11,15 +11,20 @@ class dispatcher:
         m = re.compile(match)
         self.builtins[m] = (handler,None,None)
 
-    def register_cmd(self,match,handler,role=None,channel=None):
+    def register_cmd(self,match,handler,roles=None,channels=None):
         m = re.compile(match)
-        self.cmds[m] = (handler,role,channel)
+        self.cmds[m] = (handler,roles,channels)
 
     def register_default(self,handler):
         self.default = handler
 
     def check_cmd_permission(self,message,handler):
-        sys.stderr.write(str(message)+'\n')
+        _,roles,channels = handler
+        if roles:
+            pass
+        if channels:
+            if not message.channel.name in channels:
+                return False
         return True
 
     async def dispatch_cmd(self,message):
