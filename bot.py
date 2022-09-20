@@ -4,6 +4,7 @@ import random
 import sys
 
 async def add_react(message,name):
+    print(message.guild.emojis)
     reaction = discord.utils.get(message.guild.emojis,name=name)
     if reaction:
         await message.add_reaction(reaction)
