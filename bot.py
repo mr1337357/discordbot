@@ -13,7 +13,7 @@ async def add_react(message,name):
 async def add_funny_letters(message, text):
     upper_text = text.upper()
     if any(c not in set(string.ascii_uppercase) for c in upper_text):
-        pass
+        return
     for char in upper_text: 
         await message.add_reaction(lookup('REGIONAL INDICATOR SYMBOL LETTER %s' % char))
 
