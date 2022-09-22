@@ -15,7 +15,7 @@ async def add_funny_letters(message, text):
     if any(c not in set(string.ascii_uppercase) for c in upper_text):
         return
     for char in upper_text: 
-        await message.add_reaction(lookup('REGIONAL INDICATOR SYMBOL LETTER %s' % char))
+        await message.add_reaction(lookup(f'REGIONAL INDICATOR SYMBOL LETTER {char}'))
 
 d = dispatcher()
 d.register_builtin('!ping', lambda msg: msg.channel.send('pong'))
