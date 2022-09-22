@@ -5,7 +5,7 @@ import discord
 class dispatcher:
     def __init__(self):
         self.builtins = {}
-        self.cmds = ()
+        self.cmds = []
         self.default = lambda x: x
 
     def register_builtin(self,match,handler):
