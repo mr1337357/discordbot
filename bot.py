@@ -2,11 +2,20 @@ import discord
 from dispatcher import dispatcher
 import random
 import sys
+from unicodedata import lookup
+import string
 
 async def add_react(message,name):
     reaction = discord.utils.get(message.guild.emojis,name=name)
     if reaction:
         await message.add_reaction(reaction)
+
+async def add_funny_letters(message, text):
+    upper_text = text.upper()
+    if any(c not in set(string.ascii_uppercase) for c in upper_text):
+        pass
+    for char in upper_text: 
+        await message.add_reaction(lookup('REGIONAL INDICATOR SYMBOL LETTER %s' % char))
 
 d = dispatcher()
 d.register_builtin('!ping', lambda msg: msg.channel.send('pong'))
@@ -17,6 +26,7 @@ d.register_builtin('!reload',lambda msg: sys.exit(0))
 d.register_cmd('!roll', lambda msg: msg.channel.send(random.randint(1,20)))
 d.register_cmd('!socks', lambda msg: msg.channel.send(random.choice(['UwU','OwO','onii-chan'])),channels = ['programming-socks-gone-wild'])
 d.register_cmd('.*socks.*',lambda msg: add_react(msg,'bonk'),channels = ['^((?!programming-socks-gone-wild).)*$'])
+d.register_cmd('.*js.*', lambda msg: add_funny_letters(msg, 'bad'))
 
 class MyClient(discord.Client):
     async def on_ready(self):
