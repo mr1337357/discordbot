@@ -5,7 +5,7 @@ import discord
 class dispatcher:
     def __init__(self):
         self.builtins = {}
-        self.cmds = {}
+        self.cmds = ()
         self.default = lambda x: x
 
     def register_builtin(self,match,handler):
@@ -14,13 +14,12 @@ class dispatcher:
 
     def register_cmd(self,match,handler,roles=None,channels=None):
         m = re.compile(match)
-        self.cmds[m] = (handler,roles,channels)
+        self.cmds.append(m,handler,roles,channels)
 
     def register_default(self,handler):
         self.default = handler
 
-    def check_cmd_permission(self,message,handler):
-        _,roles,channels = handler
+    def check_cmd_permission(self,message,handler,roles,channels):
         if roles:
             pass
         if channels:
@@ -37,9 +36,9 @@ class dispatcher:
             if cmd.match(message.content):
                 await handler[0](message)
                 return
-        for cmd,handler in self.cmds.items():
+        for cmd,handler,roles,channels in self.cmds:
             if cmd.match(message.content):
-                if self.check_cmd_permission(message,handler):
-                    await handler[0](message)
+                if self.check_cmd_permission(message,handler,roles,channels):
+                    await handler(message)
                     return
         self.default(message)
