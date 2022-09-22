@@ -14,7 +14,7 @@ class dispatcher:
 
     def register_cmd(self,match,handler,roles=None,channels=None):
         m = re.compile(match)
-        self.cmds.append(m,handler,roles,channels)
+        self.cmds.append((m,handler,roles,channels))
 
     def register_default(self,handler):
         self.default = handler
