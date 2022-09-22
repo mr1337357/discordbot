@@ -26,7 +26,7 @@ d.register_builtin('!reload',lambda msg: sys.exit(0))
 d.register_cmd('!roll', lambda msg: msg.channel.send(random.randint(1,20)))
 d.register_cmd('!socks', lambda msg: msg.channel.send(random.choice(['UwU','OwO','onii-chan'])),channels = ['programming-socks-gone-wild'])
 d.register_cmd('.*socks.*',lambda msg: add_react(msg,'bonk'),channels = ['^((?!programming-socks-gone-wild).)*$'])
-d.register_cmd('.*js.*', lambda msg: add_funny_letters(msg, 'bad'))
+d.register_cmd('.*(?i)js.*', lambda msg: add_funny_letters(msg, 'bad'))
 
 class MyClient(discord.Client):
     async def on_ready(self):
