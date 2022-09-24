@@ -32,7 +32,7 @@ d.register_cmd('!roll', lambda msg: msg.channel.send(random.randint(1,20)))
 d.register_cmd('!socks', lambda msg: msg.channel.send(random.choice(['UwU','OwO','onii-chan'])),channels = ['programming-socks-gone-wild'])
 d.register_cmd('.*(?i)socks.*',lambda msg: add_react(msg,'bonk'),channels = ['^((?!programming-socks-gone-wild).)*$'])
 d.register_cmd('.*(?i)js.*', lambda msg: add_funny_letters(msg, 'bad'))
-d.register_cmd('.*(?i)ma .*', gottem_replies)
+d.register_cmd('.*(?i)ma$.*', gottem_replies)
 d.register_cmd('.*(?i)socks.*',lambda msg: add_react(msg,'nice'),channels = ['programming-socks-gone-wild'])
 
 class MyClient(discord.Client):
