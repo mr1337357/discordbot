@@ -31,6 +31,8 @@ async def no_hello(message):
     msg = lower_message.split(' ')
     if len(msg) == 1 and msg[0] == 'hello':
         await message.channel.send('https://nohello.net/en/')
+        for char in ['N', 'O']:
+            await message.add_reaction(lookup(f'REGIONAL INDICATOR SYMBOL LETTER {char}'))
 
 
 d = dispatcher()
